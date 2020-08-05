@@ -1,0 +1,64 @@
+﻿@model Image<Rgb24>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+  
+  <table>
+
+    @for (int row = 0; row < Model.Height; row++)
+    {
+      <tr>
+
+        @for (int col = 0; col < Model.Width; col++)
+        {
+          var p = Model[col, row];
+          <td style="background: rgb(@p.R, @p.G, @p.B)"><!-- @p.ToHex() -->.</td>
+        }
+
+      </tr>
+    }
+
+  </table>
+
+  <br>
+  <br>
+  <br>
+    
+  <table class="lcd">
+
+    @for (int row = 0; row < Model.Height; row++)
+    {
+      <tr>
+
+        @for (int col = 0; col < Model.Width; col++)
+        {
+          var p = Model[col, row];
+          <td style="background: rgb(@p.R, 0, 0)"><!-- @p.R --></td>
+        }
+
+      </tr>
+      <tr>
+
+        @for (int col = 0; col < Model.Width; col++)
+        {
+          var p = Model[col, row];
+          <td style="background: rgb(0, @p.G, 0)"><!-- @p.G --></td>
+        }
+
+      </tr>
+      <tr>
+
+        @for (int col = 0; col < Model.Width; col++)
+        {
+          var p = Model[col, row];
+          <td style="background: rgb(0, 0, @p.B)"><!-- @p.B --></td>
+        }
+
+      </tr>
+    }
+
+  </table>
+</div>
